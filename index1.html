@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="first">welcome by yourself</h1>
+
+    <h2 class="second">move on</h2>
+    <h2 class="second">move away</h2>
+
+    <p>surya</p>
+    <p>teja</p>
+    <p>karthik</p>
+    <script>
+        let firstele = document.getElementById('first')
+        firstele.style.backgroundColor = "red";
+
+        let secondele = document.getElementsByClassName('second')
+        secondele[0].style.backgroundColor = "green";
+        
+        let paras = document.getElementsByTagName('p')
+        paras[0].style.backgroundColor = "blue";
+        paras[2].style.backgroundColor = "green";
+
+        
+    </script>
+</body>
+</html>

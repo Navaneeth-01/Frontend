@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>welcome to the page</h1>
+    <input type="text" placeholder="enter the name" id="inputValue">
+    <button id="button">Add to the list</button>
+    <ul id="list"></ul>
+
+    <script>
+        let inputvalue = document.getElementById("input");
+        let button = document.getElementById("button");
+        let listEle = document.getElementById("list");
+        button.addEventListener("click",()=>{
+            if(inputValue.value !== ""){
+                let liELe = document.createElement('li');
+                liELe.textContent = inputValue.value;
+
+                listEle.appendChild(liELe);
+                inputValue.value = "";
+
+                let deleteButton = document.createElement("button");
+                deleteButton.textContent = 'Delete';
+
+                liELe.appendChild(deleteButton);
+                deleteButton.addEventListener('click', function() {
+                    liELe.remove()
+                })
+        }})
+    </script>
+</body>
+</html>
