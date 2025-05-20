@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Simple Paint App</title>
+  <style>
+    body {
+      text-align: center;
+      font-family: sans-serif;
+    }
+    canvas {
+      border: 1px solid #000;
+      cursor: crosshair;
+    }
+    .toolbar {
+      margin-bottom: 10px;
+    }
+    button {
+      padding: 10px 20px;
+      margin: 0 5px;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="toolbar">
+    <button onclick="setTool('pencil')">Pencil</button>
+    <button onclick="setTool('square')">Square</button>
+    <button onclick="setTool('eraser')">Eraser</button>
+    <button onclick="clearCanvas()">Clear</button>
+  </div>
+
+  <canvas id="paintCanvas" width="600" height="400"></canvas>
+
+  <script>
+    const canvas = document.getElementById('paintCanvas');
+    const ctx = canvas.getContext('2d');
+
+    let drawing = false;
+    let tool = 'pencil';
+
+    canvas.addEventListener('mousedown', (e) => {
+      drawing = true;
+      ctx.beginPath();
+      ctx.moveTo(e.offsetX, e.offsetY);
+    });
+
+    canvas.addEventListener('mousemove', (e) => {
+      if (!drawing) return;
+      if (tool === 'pencil') {
+        ctx.strokeStyle = 'black';
+        ctx.lineWidth = 2;
+      } else if (tool === 'eraser') {
+        ctx.strokeStyle = 'white';
+        ctx.lineWidth = 20;
+      }
+      ctx.lineTo(e.offsetX, e.offsetY);
+      ctx.stroke();
+    });
+
+    canvas.addEventListener('mouseup', () => {
+      drawing = false;
+    });
+
+    canvas.addEventListener('mouseleave', () => {
+      drawing = false;
+    });
+
+    function setTool(selectedTool) {
+      tool = selectedTool;
+    }
+
+    function clearCanvas() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+    
+  </script>
+
+</body>
+</html>

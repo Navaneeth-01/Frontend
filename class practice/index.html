@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="myButton">click on</button>
+    <script>
+        var button = document.getElementById("myButton");
+
+        function handleButtonClick(){
+            button.style.backgroundColor = "orange";
+            console.log("Button Clicked")
+        }
+        button.addEventListener("click", handleButtonClick);
+
+        setTimeout(function(){
+            button.removeEventListener("click", handleButtonClick);
+            alert("event has been removed!");
+        }, 5000);
+
+    </script>
+
+</body>
+</html>

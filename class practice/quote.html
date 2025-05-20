@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Quotes</h1>
+    <button onclick="loadposts()">New Quote</button>
+    <div id="posts"></div>
+
+    <script>
+        const parentDiv = document.getElementById("posts");
+        async function loadposts(){
+            try {
+                let response = await fetch(`https://jacintodesign.github.io/quotes-api/data/quotes.json`)
+                let quotedata = await response.json()
+                parentDiv.innerHTML=""
+                console.log(quotedata)
+                let index = Math.ceil(Math.random*(quotedata.length))
+                let quote = quotedata[index]
+                let divEle = document.createElement("div")
+                divEle.innerHTML =`${quotedata.text} by ${quotedata.author}`
+                parentDiv.appendChild(posts)
+            }
+            catch (error) {
+                console.log(error)
+            }}
+        
+    </script>
+</body>
+</html>

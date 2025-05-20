@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>QR Code Generator</h1>
+    <input id="input" type="text" placeholder="Type your text or URL"><br><br>
+    <label for="sizes">Select size:</label>
+    <select name="sizes" id="sizes">
+        <option value="100">100*100</option>
+        <option value="200">200*200</option>
+        <option value="300">300*300</option>
+    </select>
+    <div id="qrcode"></div><br>
+    <div id="qr-footer">
+        <a href="" id="buttonGenerate" type="submit" onclick="generateQrCode()">Generate</a>
+        <a href="" id="buttonDownload"type="submit" >Download</a>
+    </div>
+
+    
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+    <script>
+        let inputEle = document.getElementById("input");
+        let generateEle = document.getElementById("buttonGenerate");
+        let downloadEle = document.getElementById("buttonDownload");
+        let sizeEle = document.getElementById("sizes");
+        let divEle = document.getElementById("qrcode");
+
+        let size = sizeEle.value
+
+        generateEle.addEventListener('click',(e)=>{
+            e.preventDefault();
+            isEmptyInput();
+        });
+        
+        downloadEle.addEventListener('click',()=>{
+            const canvas = document.querySelector(".qr-body canvas")
+            if(canvas) {
+                const imageData = canvas.toData("image/png");
+                buttonDownload.setAttribute("herf", imageData);
+                buttonDownload.setAttribute("download", "qr-code.png");
+            }
+            console.log(size)
+
+        })
+        sizeEle.addEventListener('change',()=>{
+            
+
+        })
+
+        function isEmptyInput(){
+            inputEle.value.length > 0
+            ? generateQrCode()
+            : alert("Enter the text or URL to generate the code");
+        }
+         function generateQrCode(){
+            divEle.innerHTML="";
+            new QRCode(divEle,{
+            text: inputEle.value,
+            height: size,
+            width: size,
+            });
+            console.log(divEle.firstChild);
+         }
+
+    </script>
+</body>
+</html>

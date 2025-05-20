@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var productData = [
+            {
+                "id" : 101,
+                "name" : "name1",
+                "price": 1000,
+                "descprition": "good looking",
+                "product": "mirror"
+            },
+            {
+               "id" : 102,
+               "name" : "name2",
+               "price": 1500,
+               "descprition": "Place the order",
+                "product": "table"
+            }
+        ];
+            function fetchProducts(){
+                let ulEle = document.createElement("ul")
+                let data = productData;
+                data.forEach((obj)=>{
+                    let liEle = document.createElement("li")
+                    liEle.textContent = `${obj.name} + ${obj.price}`
+                    ulEle.appendChild(liEle)
+                })
+                document.body.appendChild(ulEle)
+            }
+
+    </script>
+</head>
+<body>
+    <h1>product list</h1>
+    <button onclick="fetchProducts()">Fetch Products</button>
+</body>
+</html>
